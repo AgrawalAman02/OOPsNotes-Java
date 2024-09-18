@@ -6,6 +6,8 @@ through object initialization). Provide methods which returns object of the comp
 class as the result for addition, subtraction, multiplication of two complex numbers.
 */
 
+// this is my approach but the lab assistant denied so i am commenting this one and the updated one is below this 
+/*
 import java.io.*;
 
 class Complex{
@@ -75,3 +77,90 @@ public class Q4 {
         }
     }
 }
+*/
+
+import java.io.*;
+
+class Complex{
+    int real;
+    int imaginary;
+
+    public Complex(){
+        real = 0;
+        imaginary = 0;
+    }
+
+    public Complex(int real , int imaginary){
+        this.real = real;
+        this.imaginary = imaginary;
+    }
+
+    public Complex(Complex that){
+        this.real= that.real+10;
+        this.imaginary= that.imaginary+10;
+    }
+
+    public static Complex add(Complex a, Complex b){
+        return new Complex(a.real+b.real , a.imaginary+b.imaginary);
+    }
+
+    public static Complex subtract(Complex a, Complex b){
+        return new Complex(a.real-b.real , a.imaginary-b.imaginary);
+    }
+    
+    public static Complex multiply(Complex a, Complex b){
+        return new Complex((a.real*b.real)- (a.imaginary*b.imaginary), (a.real*b.real)+ (a.imaginary*b.imaginary));
+    }
+
+    public void display(){
+        System.out.println("Compex Number : "+ real +" +"+imaginary+"i ");
+    }
+    
+}
+
+public class Q4{
+    public static void main(String[] args) throws IOException {
+        try(BufferedReader br = new BufferedReader(new InputStreamReader(System.in))){
+            Complex comp1 = new Complex();
+            System.out.println("----------------------Default Constructor-------------------");
+            comp1.display();
+            System.out.println("----------------------For Parameterised Constructor-------------------");
+            System.out.println("Enter the real part of the first complex no. : ");
+            int real = Integer.parseInt(br.readLine());
+            System.out.println("Enter the imaginary part of the first complex no. : ");
+            int img = Integer.parseInt(br.readLine());
+            Complex comp2 = new Complex(real,img);
+            System.out.print("first Complex No:");
+            comp2.display();
+
+            System.out.println("Enter the real part of the second complex no. : ");
+            real = Integer.parseInt(br.readLine());
+            System.out.println("Enter the imaginary part of the se2cond complex no. : ");
+            img = Integer.parseInt(br.readLine());
+            Complex comp3 = new Complex(real,img);
+            System.out.print("first Complex No:");
+            comp3.display();
+
+            System.out.print("The addition of both of them is :");
+            Complex.add(comp2,comp3).display();
+            System.out.print("The subtraction of both of them is :");
+            Complex.subtract(comp2,comp3).display();
+            System.out.print("The multiplication of both of them is :");
+            Complex.multiply(comp2,comp3).display();
+
+            System.out.println("----------------------Complex Object-------------------");
+            Complex comp4 = new Complex(comp2);
+            Complex comp5 = new Complex(comp3);
+
+            System.out.print("The addition of both of them is :");
+            Complex.add(comp4,comp5).display();
+            System.out.print("The subtraction of both of them is :");
+            Complex.subtract(comp4,comp5).display();
+            System.out.print("The multiplication of both of them is :");
+            Complex.multiply(comp4,comp5).display();
+        }
+        
+    }
+}
+
+
